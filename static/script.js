@@ -1,4 +1,30 @@
 
+/* const nombre = document.getElementById('nombre').value;
+const cedula = document.getElementById('cedula').value;
+const edad = document.getElementById('edad').value;
+const nacionalidad = document.getElementById('nacionalidad').value;
+
+const datos = {
+    nombre: nombre,
+    cedula: cedula,
+    edad: edad,
+    nacionalidad: nacionalidad
+};
+
+fetch('/ingresar', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(datos)
+})
+.then(response => response.json())  // Convierte la respuesta del servidor en formato JSON
+.catch(error => {
+    alert('Hubo un error al enviar los datos');
+    console.error('Error:', error);
+}); */
+
+
 document.getElementById('formulario').addEventListener('submit', function (event) {
     event.preventDefault();
 

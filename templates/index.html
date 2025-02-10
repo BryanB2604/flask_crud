@@ -33,17 +33,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Jugadores de Tenis</title>
-    <link rel="stylesheet" href="../estilos/index.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./styles.css') }}">
 
 </head>
 
 <body>
+
+    <h1>Jugadores de Tenis</h1>
+    
     <div class="container">
-        <h1>Jugadores de Tenis</h1>
 
         <div class="formulario">
             <h2>Ingresar Jugador</h2>
-            <form class="formulario" id="formulario">
+            <form class="formulario1" id="formulario1">
                 <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
                 <input type="number" name="cedula" id="cedula" placeholder="Cédula" required>
                 <input type="number" name="edad" id="edad" placeholder="Edad" required>
