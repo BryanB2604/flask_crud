@@ -1,17 +1,60 @@
-
-.container {
-    width: 100%;
+.general_cointainer {
+    display: flex;
+    flex-direction: row;
     height: 100%;
-}
-
-h1 {
+    width: 100%;
+    justify-items: center;
     text-align: center;
-    color: #2e0fdf;
+    overflow: hidden;
 }
 
-.formulario {
-    align-items: start;
-    font-size: 25px;
-    width: 40%;
-    margin: 0 auto;
+
+.body {
+    margin: 2%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; 
+
+    th, td {
+        padding: 10px; 
+        border: 1px solid #ddd; 
+    }
+}
+
+thead {
+    background-color: #f1f1f1;
+    font-weight: bold;
+}
+
+.tabla_scroll {
+    max-height: 200px;
+    overflow: auto; 
+    width: 100%;
+}
+
+.aside {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    text-align: center;
+    margin: 10%;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        font-size: medium;
+    }
+
+    input {
+        margin: 4%;
+        padding: 10px; 
+        border: 1px solid #ddd;
+    }
+
 }
