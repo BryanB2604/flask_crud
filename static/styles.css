@@ -1,3 +1,17 @@
+body {
+    background-color: #f5f5f5;
+
+    h1 {
+        color: #3e3e4c;
+        font-weight: bold;
+    }
+
+    h2 {
+        color: #1b4a79;
+        font-weight: bold;
+    }
+}
+
 .general_cointainer {
     display: flex;
     flex-direction: row;
@@ -8,9 +22,8 @@
     overflow: hidden;
 }
 
-
 .body {
-    margin: 2%; 
+    margin: 2%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,22 +32,38 @@
 
 table {
     width: 100%;
-    border-collapse: collapse; 
+    border-collapse: collapse;
+    border: none;
 
-    th, td {
-        padding: 10px; 
-        border: 1px solid #ddd; 
+    th,
+    td {
+        padding: 10px;
+        border: 1px solid #fff;
+    }
+
+
+    button {
+        border-radius: 30px;
+    }
+
+    button:hover {
+        background-color: #585879;
+        color: #fff;
     }
 }
 
 thead {
-    background-color: #f1f1f1;
+    background-color: #585879;
     font-weight: bold;
+}
+
+tbody {
+    background-color: #a6a6b5;
 }
 
 .tabla_scroll {
     max-height: 200px;
-    overflow: auto; 
+    overflow: auto;
     width: 100%;
 }
 
@@ -44,6 +73,9 @@ thead {
     justify-items: center;
     text-align: center;
     margin: 10%;
+    background-color: #c7c8d6;
+    padding: 20px;
+    border-radius: 25px;
 
     form {
         display: flex;
@@ -52,9 +84,26 @@ thead {
     }
 
     input {
-        margin: 4%;
-        padding: 10px; 
-        border: 1px solid #ddd;
+        margin: 10px;
+        padding: 10px;
+        border: 6px #ddd;
+    }
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    button {
+        border-radius: 30px;
+        background-color: #585879;
+        color: #fff;
+    }
+
+    button:hover {
+        background-color: #fff;
+        color: #32006b;
     }
 
 }

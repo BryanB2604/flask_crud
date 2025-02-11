@@ -12,17 +12,18 @@
 <body>
 
     <div class="general_cointainer">
+
         <div class="aside">
             <h2>Agregar Jugador</h2>
             <form id="formulario">
-                <input type="text" id="nombre" placeholder="Nombre" required>
-                <input type="number" id="cedula" placeholder="Cédula" required>
-                <input type="number" id="edad" placeholder="Edad" required>
-                <input type="text" id="nacionalidad" placeholder="Nacionalidad" required>
+                <input type="text" id="nombre" placeholder="Nombre" minlength="1" maxlength="30" required>
+                <input type="number" id="cedula" placeholder="Cédula" min="100000" max="99999999999" required>
+                <input type="number" id="edad" placeholder="Edad" min="1" max="110" required>
+                <input type="text" id="nacionalidad" placeholder="Nacionalidad" minlength="1" maxlength="30" required>
                 <button type="submit">Agregar</button>
             </form>
         </div>
-
+        
 
         <div class="body">
             <div class="header">
