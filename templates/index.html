@@ -1,41 +1,70 @@
-<!-- <form action="/actualizar" method="POST">
-    <input type="text" name="nombre" placeholder="Nombre">
-    <input type="number" name="cedula" placeholder="Cédula">
-    <input type="number" name="edad" placeholder="Edad">
-    <input type="text" name="nacionalidad" placeholder="Nacionalidad">
-    <button type="submit">Enviar</button>
-</form>
-
-<table>
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>cedula</th>
-            <th>Edad</th>
-            <th>Nacionalidad</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for jugador in jugadores %}
-        <tr>
-            <td>{{ jugador[0] }}</td>
-            <td>{{ jugador[1] }}</td>
-            <td>{{ jugador[2] }}</td> 
-            <td>{{ jugador[3] }}</td> 
-        </tr>
-        {% endfor %}
-    </tbody>
-</table> -->
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Jugadores de tenis</title>
+    <title>Jugadores de Tenis</title>
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
+
 <body>
-    <div></div>
+
+    <div class="general_cointainer">
+
+        <div class="aside">
+            <h2>Agregar Jugador</h2>
+            <form id="formulario" onsubmit="return validarFormulario(event)">
+                <input type="text" id="nombre" placeholder="Nombre" minlength="1" maxlength="30" required>
+                <input type="number" id="cedula" placeholder="Cédula" min="100000" max="99999999999" required>
+                <input type="number" id="edad" placeholder="Edad" min="1" max="110" required>
+                <input type="text" id="nacionalidad" placeholder="Nacionalidad" minlength="1" maxlength="30" required>
+                <button type="submit">Agregar</button>
+            </form>
+        </div>  
+
+        <div class="body">
+            <div class="header">
+                <h1>Gestión de Jugadores</h1>
+            </div>
+
+            <h2>Lista de Jugadores</h2>
+            <div class="tabla_scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Cédula</th>
+                            <th>Edad</th>
+                            <th>Nacionalidad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-jugadores">
+                    </tbody>
+                </table>
+            </div>
+
+
+            <h2>Estadísticas</h2>
+            <table>
+                <thead>
+                    <th>Número de jugadores</th>
+                    <th>Edad promedio</th>
+                    <th>Nacionalidad más común</th>
+                </tr>
+                </thead>
+                <tr id="estadisticas">
+                    <td id="num-jugadores">-</td>
+                    <td id="promedio-edad">-</td>
+                    <td id="nacionalidad-mas-repetida">-</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
 </body>
+
 </html>
