@@ -4,20 +4,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("formulario").addEventListener("submit", function (event) {
         event.preventDefault(); // Evita que la página se recargue
-       
+
         let nombre = document.getElementById("nombre").value;
         let cedula = document.getElementById("cedula").value;
         let edad = document.getElementById("edad").value;
         let nacionalidad = document.getElementById("nacionalidad").value;
 
-        agregarJugador(nombre, cedula, edad, nacionalidad);
+        function validarFormulario() {
+            const nombre = document.getElementById('nombre');
+            const nacionalidad = document.getElementById('nacionalidad');
+            const validar = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
 
-        document.getElementById("nombre").value = "";
-        document.getElementById("cedula").value = "";
-        document.getElementById("edad").value = "";
-        document.getElementById("nacionalidad").value = "";
+            if (!validar.test(nombre.value)) {
+                alert("Por favor, ingrese solo letras y espacios en el campo de nombre.");
+                return false; 
+            }
+
+            if (!validar.test(nacionalidad.value)) {
+                alert("Por favor, ingrese solo letras y espacios en el campo de nacionalidad.");
+                return false; 
+            }
+
+            return true; 
+        }
+
+        if (validarFormulario()) {
+            agregarJugador(nombre, cedula, edad, nacionalidad);
+
+            document.getElementById("nombre").value = "";
+            document.getElementById("cedula").value = "";
+            document.getElementById("edad").value = "";
+            document.getElementById("nacionalidad").value = "";
+        }
     });
-
 });
 
 function agregarJugador(nombre, cedula, edad, nacionalidad) {
@@ -77,6 +96,23 @@ function actualizarJugador(cedula) {
     let nuevaEdad = prompt("Nueva edad:");
     let nuevaNacionalidad = prompt("Nueva nacionalidad:");
 
+    const validar = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
+
+    if (!validar.test(nuevoNombre)) {
+        alert("Por favor, ingrese solo letras y espacios en el campo de nombre.");
+        return false;
+    }
+
+    if (!validar.test(nuevaNacionalidad)) {
+        alert("Por favor, ingrese solo letras y espacios en el campo de nacionalidad.");
+        return false;
+    }
+
+    if (isNaN(nuevaEdad) || nuevaEdad <= 0 || nuevaEdad > 110) {
+        alert("Por favor, ingrese una edad válida.");
+        return false; 
+    }
+
     if (nuevoNombre && nuevaEdad && nuevaNacionalidad) {
         fetch("/actualizar", {
             method: "PUT",
@@ -84,16 +120,26 @@ function actualizarJugador(cedula) {
             body: JSON.stringify({
                 cedula: cedula,
                 nombre: nuevoNombre,
-                edad: nuevaEdad,
+                edad: parseInt(nuevaEdad), 
                 nacionalidad: nuevaNacionalidad
             })
         })
         .then(response => response.json())
         .then(data => {
-            alert("Jugador actualizado");
-            cargarJugadores();
-            cargarEstadisticas();
+            if (data.mensaje == "Jugador actualizado correctamente") {
+                alert("Jugador actualizado");
+                cargarJugadores();
+                cargarEstadisticas();
+            } else {
+                alert("Error al actualizar el jugador: " + data.mensaje);
+            }
+        })
+        .catch(error => {
+            console.error("Error en la solicitud:", error);
+            alert("Hubo un error al intentar actualizar el jugador.");
         });
+    } else {
+        alert("Todos los campos deben ser completos.");
     }
 }
 

@@ -49,12 +49,19 @@ def eliminar():
 @app.route('/actualizar', methods=['PUT'])
 def actualizar():
     datos = request.json
+    print("Datos recibidos:", datos)
     conexion = conectar_db()
     cursor = conexion.cursor()
+
+    cursor.execute("SELECT * FROM jugador WHERE cedula = %s", (datos['cedula'],))
+    if cursor.fetchone() is None:
+        return jsonify({"mensaje": "Jugador no encontrado"})
+
     cursor.execute("UPDATE jugador SET nombre = %s, edad = %s, nacionalidad = %s WHERE cedula = %s",
                    (datos['nombre'], datos['edad'], datos['nacionalidad'], datos['cedula']))
     conexion.commit()
     conexion.close()
+        
     return jsonify({"mensaje": "Jugador actualizado correctamente"})
 
 @app.route('/estadisticas', methods=['GET'])
